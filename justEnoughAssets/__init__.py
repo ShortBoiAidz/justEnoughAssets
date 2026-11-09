@@ -1,0 +1,1 @@
+print("Successfully installed Just Enough Assets (JEA)")
