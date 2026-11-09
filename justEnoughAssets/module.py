@@ -1,9 +1,8 @@
 import pygame as pg
 import random
 import json
-import sys
 
-from PygameTkinterGUITools import *
+from justEnoughAssets.dependencies.PygameTkinterGUITools import *
 
 #&====================================
 '''
