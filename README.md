@@ -10,10 +10,10 @@ JEA simplifies Fox's vibe coded library and makes implementation a lot quicker a
 ## Initialisation:
 
 1. Install JEA:
-  `pip install git+https://github.com/ShortBoiAidz/JustEnoughAssets`
+  `pip install just-enough-assets`
 
-3. Import JEF using the following syntax in your Python file:
-`import justEnoughAssets.py as jea`
+3. Import JEA using the following syntax in your Python file:
+`from justEnoughAssets import *` or `import justEnoughAssets as jea`
 
 2. Initialise the module in your `process_logic()` function using the following syntax:
 `jea.init()`
