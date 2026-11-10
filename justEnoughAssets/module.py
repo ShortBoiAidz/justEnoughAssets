@@ -4,52 +4,14 @@ import json
 
 from justEnoughAssets.dependencies.PygameTkinterGUITools import *
 
-#&====================================
-'''
-#* ABOUT:
 
-This library is based around simplifying Adam Fox's "Pygame Tkinter GUI Tools" library.
-Fox's PTGT is aimed at making game development easier by giving pre-built tools for developers to use.
-I didn't really like how he vibe coded the whole thing so I made the library Just Enough Assets.
-JEF simplifies Fox's vibe coded library and makes implementation a lot quicker and easier.
+#& ================================================
 
-========================================================
+#* Main
+class main():
+  def __init__(self):
+    print("Just Enough Assets (JEA) installed successfully!")
 
-#* INITALISING:
-1. Import JEF using the following syntax in your Python file:
-`from {module directory} import justEnoughAssets.py as jea`
-
-2. Initialise the module in your `process_logic()` function using the following syntax:
-`jea.init()`
-
-3. You do NOT need to initalise in each module. As long as this runs through your `while` loop, everything should work fine.
-
-4. You DO need to import the module in each of your files though (obviously).
-
-========================================================
-
-#* HOW TO USE:
-
-#* Labels
-1. Use the `createLabel(a, b, c, d, e)` with the following params:
-  a. scene
-    i. For example: `menu` or `startScreen`
-  b. text
-    i. Self explanatory. If I need to tell you what "text" is, kill yourself.
-  c. font size
-    i. Same goes here. If you don't know what "font size" is, kill yourself.
-  d. row
-    i. The row on the Y axis. This sets it in place so other labels don't overlap.
-    ii. For example: one label could be on row 1, meaning a label below it would be on row 2.
-  e. padding on the Y axis
-    i. The amount of space above and below the label
-
-2. Putting `.draw()` at the end of initialising the label automatically draws it on screen.
-  a. Handy, because it doesn't make you do `thisAwesomeCoolLabel.draw()` after initalising it.
-  
-#$suggestion: `createLabel(menu, "Horse Tale", 48, 0).draw()`
-
-'''
 
 #& ================================================
 
@@ -62,7 +24,7 @@ def init():
 
 #* Label Creation
 class createLabel():
-  def __init__(self, scene, text, fontSize, row, yPadding=20):
+  def __init__(self, scene, text:str, fontSize:int, row:int, yPadding:int=20):
     """Creates a label using Pygame Tkinter Gui Tools but makes it a little easier to read and write. Kind of just an extra layer of maintainability.
 
     Args:
@@ -89,7 +51,7 @@ class createLabel():
 #* Character Creation
 
 class Character(pg.sprite.Sprite):
-  def __init__(self, character, x, y, pathToImg=None, animation=False, pathToAnimation=None, width=None, height=None, rows=None, cols=None, allowJSON=False, pathToJSON=None, speakingSound=None, themeMusic=None, themeMusicVolume=0.7):
+  def __init__(self, character:str, x:int, y:int, pathToImg:str=None, animation:bool=False, pathToAnimation:str=None, width:int=None, height:int=None, rows:int=None, cols:int=None, allowJSON:bool=False, pathToJSON:str=None, speakingSound:str=None, themeMusic:str=None, themeMusicVolume:float=0.7):
     """Creates a character sprite with dialog functionality if "e" is pressed. Allows for customization of the character's dialog through JSON files. See documentation for required JSON structure.
 
     Args:
@@ -172,7 +134,7 @@ class Character(pg.sprite.Sprite):
 
 #&--------------------------------------------------------
 
-  def _loadJSON(self, character, charactersJSON):
+  def _loadJSON(self, character:str, charactersJSON:str):
     if "randomDialog" in charactersJSON["Characters"][f"{character}"]:
       self.randomDialog = (charactersJSON["Characters"][f"{character}"]["randomDialog"])
     else:
@@ -180,12 +142,12 @@ class Character(pg.sprite.Sprite):
 
 #&--------------------------------------------------------
 
-  def update(self, screen, tick, player=None):
+  def update(self, screen:pg.display, tick, player:object=None):
     """Detects if the 'toggleDialog' key is pressed. If true, runs the dialog until the 'toggleDialog' key is pressed again.
 
     Args:
         screen (_pygame.display_): Pygame's display
-        tick (_int_): _Frame rate of the game_
+        tick (_int_): Frame rate of the game
     """
 
     e_pressed = keys[pg.K_e]
@@ -232,7 +194,7 @@ class Character(pg.sprite.Sprite):
     visibleText = dialog[0: self.textCounter // self.textSpeed]
 
 
-  def _drawDialog(self, screen):
+  def _drawDialog(self, screen:pg.display):
     if self.fixedDialog:
       self._hasFixedDialog()
 
@@ -254,12 +216,12 @@ class Character(pg.sprite.Sprite):
       screen.blit(self.snip, (padding, panelTop + padding + lineIndex * lineHeight))
 
 
-  def _drawSpeakingCharacter(self, screen):
+  def _drawSpeakingCharacter(self, screen:pg.display):
     self.idleSpeakingImage = pg.transform.scale(self.idleImage, (200, 200))
     screen.blit(self.idleSpeakingImage, self.speakingCoords)
 
 
-  def _detectTextStatus(self, player):
+  def _detectTextStatus(self, player:object):
     if self.textRunning and self.textCompleted:
       self._nextLine()
     elif not self.textRunning and (self.dialog or self.randomDialog) and self.proximity is not None:
@@ -292,7 +254,7 @@ class Character(pg.sprite.Sprite):
       self._fadeoutThemeMusic()
 
 
-  def _wrapDialogText(self, text, maxWidth):
+  def _wrapDialogText(self, text:str, maxWidth:int):
     lines = []
 
     for paragraph in text.split("\n"):
@@ -345,13 +307,13 @@ class Character(pg.sprite.Sprite):
 #&--------------------------------------------------------
 
 #* Draw
-  def draw(self, screen, scaledSize=None, camera=None):
+  def draw(self, screen:pg.display, scaledSize:int=None, camera=None):
     """Draws the character sprite on the screen. If the character has an animation, it will cycle through the animation frames in the linked spritesheet. If not, it will display the idle image.
 
     Args:
         screen (_pg.display_): The Pygame display surface.
         scaledSize (_int_): The size (in px) to which the sprite should be scaled to. Defaults to None, which means no scaling will be applied.
-        camera (_pg.Rect_, optional): The camera rectangle. Defaults to None.
+        camera (_any_, optional): The camera rectangle. Defaults to None.
     """
 
     if self.status == "talking":
@@ -376,7 +338,7 @@ class Character(pg.sprite.Sprite):
 #&--------------------------------------------------------
 
 #* Spritesheet
-  def _loadFromSheet(self, source, tileWidth, tileHeight, rows, cols):
+  def _loadFromSheet(self, source:str, tileWidth:int, tileHeight:int, rows:int, cols:int):
     """Loads a spritesheet and slices it into individual frames.
 
     Args:
@@ -404,7 +366,7 @@ class Character(pg.sprite.Sprite):
 #&--------------------------------------------------------
   
 #* Animation
-  def _cycleAnimation(self, screen, scaledSize, camera=None):
+  def _cycleAnimation(self, screen:pg.display, scaledSize:int, camera=None):
     self.animatedImage = self.sprites[self.currentSprite]
     self.animatedImage = pg.transform.scale(self.animatedImage, (72, 72))
 
@@ -424,14 +386,14 @@ class Character(pg.sprite.Sprite):
 #* Proximity control
 
 class Proximity():
-  def __init__(self, character, coordinates=None, interactionRange=100, player=None):
+  def __init__(self, character:str, coordinates:tuple=None, interactionRange:int=100, player:object=None):
     """__init__ Initialises the proximity control. Detects if the player object is nearby.
 
     Args:
         character (_str_): _Character object (the one that has the dialog)_
-        coordinates (_int_, optional): _Coordinates of the character's rect/hitbox_. Defaults to None.
+        coordinates (_tuple_, optional): _Coordinates of the character's rect/hitbox_. Defaults to None.
         interactionRange (int, optional): _Distance (in px) for the proximity to apply_. Defaults to 100.
-        player (_str_): _The player object. Used for detecting proximity_. Defaults to none.
+        player (_object_): _The player object. Used for detecting proximity_. Defaults to none.
     """
     self.character = character
     self.coordinates = pg.Vector2(coordinates if coordinates is not None else character.rect.center)
@@ -441,7 +403,7 @@ class Proximity():
 #&--------------------------------------------------------
 
 #* Detects if the player is nearby
-  def isNear(self, player):
+  def isNear(self, player:object):
     if player is None:
       return False
 
@@ -464,12 +426,12 @@ class Proximity():
 #* Map Creation
 
 class Map():
-  def __init__(self, TMXfile, playerObject, ySort=False):
+  def __init__(self, TMXfile:str, playerObject:object, ySort:bool=False):
     """Creates a map object using a TMX file. Reads the TMX file and sorts components based on their Y value relative to the player object.
 
     Args:
         TMXfile (_str_): _Path to the map's TMX file_.
-        playerObject (_str_): _The object of the player. E.g. playerModule.PlayerClass()_.
+        playerObject (_object_): _The object of the player. E.g. playerModule.PlayerClass()_.
         ySort (bool, optional): _Determines if the map's components will be sorted based on their Y value relative to the player object_. Defaults to False.
     """
 
@@ -524,7 +486,7 @@ class Map():
     speed = SPEED * ground.get("speed", 1)
 
 
-  def update(self, screen, tick):
+  def update(self, screen:pg.display, tick):
     """Updates the player on the map
 
 
@@ -554,5 +516,5 @@ class Map():
     world.add_sprite(*sprites)
 
 
-  def drawMap(self, screen):
+  def drawMap(self, screen:pg.display):
     zoom_camera.draw_world(world, screen)

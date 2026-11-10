@@ -1,1 +1,3 @@
-print("Successfully installed Just Enough Assets (JEA)")
+from module import main
+
+main.__init__()
