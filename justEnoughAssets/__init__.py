@@ -1,3 +1,1 @@
-from module import main
-
-main.__init__()
+from .module import *

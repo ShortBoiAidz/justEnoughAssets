@@ -7,14 +7,6 @@ from justEnoughAssets.dependencies.PygameTkinterGUITools import *
 
 #& ================================================
 
-#* Main
-class main():
-  def __init__(self):
-    print("Just Enough Assets (JEA) installed successfully!")
-
-
-#& ================================================
-
 def init():
   global keys
 
