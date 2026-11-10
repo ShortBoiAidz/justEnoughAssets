@@ -1,0 +1,4 @@
+setuptools==69.2.0
+wheel
+twine
+pygame
