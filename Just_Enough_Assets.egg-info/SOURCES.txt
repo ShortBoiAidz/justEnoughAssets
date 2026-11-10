@@ -1,8 +1,9 @@
 README.md
 setup.py
-JEA/PygameTkinterGUITools.py
-JEA/__init__.py
-JEA/main.py
+JustEnoughAssets/__init__.py
+JustEnoughAssets/main.py
+JustEnoughAssets/libraries/PygameTkinterGUITools.py
+JustEnoughAssets/libraries/__init__.py
 just_enough_assets.egg-info/PKG-INFO
 just_enough_assets.egg-info/SOURCES.txt
 just_enough_assets.egg-info/dependency_links.txt

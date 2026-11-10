@@ -2,7 +2,7 @@ import pygame as pg
 import random
 import json
 
-from PygameTkinterGUITools import *
+from JustEnoughAssets.libraries.PygameTkinterGUITools import *
 
 
 #& ================================================
