@@ -7,8 +7,8 @@ with open('README.md') as f:
     description = f.read()
 
 setup(
-    name="Just-Enough-Assets",
-    version="1.0.0",
+    name="just_enough_assets",
+    version="1.0",
     include_package_data=True,
     python_requires='>=3.10',
     packages=find_packages(),

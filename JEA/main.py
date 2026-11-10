@@ -402,7 +402,6 @@ class Proximity():
     playerPosition = player.rect.center if hasattr(player, "rect") else player
 
     return self.coordinates.distance_to(pg.Vector2(playerPosition)) <= self.interactionRange
-    #@temp Really not happy with 2 return statements
 
   def interact(self, player=None):
     player = player if player is not None else self.player
@@ -477,7 +476,9 @@ class Map():
     ground = map.tile_properties_at(body.hitbox_rect.center)
     speed = SPEED * ground.get("speed", 1)
 
+#&--------------------------------------------------------
 
+#* Update
   def update(self, screen:pg.display, tick):
     """Updates the player on the map
 
@@ -503,10 +504,14 @@ class Map():
     world.update(screen, tick)
     zoom_camera.update(tick)
 
+#&--------------------------------------------------------
 
+#* Adding sprites
   def add_sprite(self, *sprites):
     world.add_sprite(*sprites)
 
+#&--------------------------------------------------------
 
+#* Drawing map
   def drawMap(self, screen:pg.display):
     zoom_camera.draw_world(world, screen)

@@ -3,8 +3,8 @@ setup.py
 JEA/PygameTkinterGUITools.py
 JEA/__init__.py
 JEA/main.py
-Just_Enough_Assets.egg-info/PKG-INFO
-Just_Enough_Assets.egg-info/SOURCES.txt
-Just_Enough_Assets.egg-info/dependency_links.txt
-Just_Enough_Assets.egg-info/requires.txt
-Just_Enough_Assets.egg-info/top_level.txt
+just_enough_assets.egg-info/PKG-INFO
+just_enough_assets.egg-info/SOURCES.txt
+just_enough_assets.egg-info/dependency_links.txt
+just_enough_assets.egg-info/requires.txt
+just_enough_assets.egg-info/top_level.txt
