@@ -5,7 +5,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="Just Enough Assets",
-    version="1.0.0-alpha",
+    version="1.0.1-alpha",
     include_package_data=True,
     python_requires='>=3.10',
     packages=find_packages(),
